@@ -1,13 +1,4 @@
-from pygame import *
 import timeit
-
-WIDTH = 500
-HEIGHT = 500
-
-# screen = display.set_mode((WIDTH, HEIGHT))
-
-
-run = True
 
 def dot(a, b):
     return a[0]*b[0]+a[1]*b[1]
@@ -29,8 +20,6 @@ def getSupport(d, a, b):
     
     return (am[0]-bm[0], am[1]-bm[1])
 
-    
-
 def GJK(a, b):
     x = (0.1, 0.1)
     for k in range(10):
@@ -40,16 +29,4 @@ def GJK(a, b):
         x = (x[0]*yk+(1-yk)*s[0], x[1]*yk+(1-yk)*s[1])
     return x
 
-
-# while run:
-#     for e in event.get():
-#         if e.type == QUIT:
-#             run = False
-#     screen.fill((255, 255, 255))
-#     draw.rect(screen, (0, 0, 0), (250, 250, 50, 100))
-#     display.flip()
-
-print(timeit.timeit(lambda:GJK([(0, 0),(1, 2),(2, 0)], [(1, 3), (1, 4), (2, 4), (2, 3)]), number=100000))
-
-display.quit()
-quit()
+print(timeit.timeit(lambda:GJK([(0, 0),(1, 2),(2, 0)], [(1, 3), (1, 4), (2, 4), (2, 3)]), number=10000)/10000)
