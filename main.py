@@ -1,5 +1,5 @@
 from pygame import *
-import math
+import timeit
 
 WIDTH = 500
 HEIGHT = 500
@@ -33,11 +33,11 @@ def getSupport(d, a, b):
 
 def GJK(a, b):
     x = (0.1, 0.1)
-    for k in range(200):
+    for k in range(10):
         d = (2*x[0], 2*x[1])
         s = getSupport(d, a, b)
-        yk = (k+1)/(k+2)
-        x = (x[0]*yk+(1-yk)*s[0]*0.1, x[1]*yk+(1-yk)*0.1*s[1])
+        yk = 0.1
+        x = (x[0]*yk+(1-yk)*s[0], x[1]*yk+(1-yk)*s[1])
     return x
 
 
@@ -49,7 +49,7 @@ def GJK(a, b):
 #     draw.rect(screen, (0, 0, 0), (250, 250, 50, 100))
 #     display.flip()
 
-print(GJK([(0, 0),(1, 2),(2, 0)], [(1, 1), (3, 4), (4, 4), (4, 3)]))
+print(timeit.timeit(lambda:GJK([(0, 0),(1, 2),(2, 0)], [(1, 3), (1, 4), (2, 4), (2, 3)]), number=100000))
 
 display.quit()
 quit()
